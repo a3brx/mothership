@@ -40,7 +40,7 @@ class MyScene extends CGFscene {
         this.displayCylinder = false;
         this.displaySphere = false;
         this.displayNormals = false;
-        this.displayTerrain = false;
+        this.displayTerrain = true;
         this.nightMode = false;
 
         this.selectedMapTexture = 0;

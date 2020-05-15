@@ -9,6 +9,7 @@ class MySupply extends CGFobject {
         super(scene);
         this.reset();
         this.initFaces();
+        this.bottomPosition = 0.2;
     }
 
     initFaces() {
@@ -48,7 +49,7 @@ class MySupply extends CGFobject {
     }
 
     land() {
-        this.y = 0;
+        this.y = this.bottomPosition;
         this.state = SupplyStates.LANDED;
     }
 
@@ -56,12 +57,13 @@ class MySupply extends CGFobject {
         if (this.state === SupplyStates.FALLING) {
             this.velocity += 0.01;
             this.y -= this.velocity;
-            if (this.y <= 0)
+            if (this.y <= this.bottomPosition)
                 this.land();
         }
     }
 
     display(scale) {
+        this.bottomPosition = 0.2*scale;
         if (this.state === SupplyStates.INACTIVE)
             return;
         this.scene.pushMatrix();
