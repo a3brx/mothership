@@ -31,6 +31,7 @@ class MyScene extends CGFscene {
         this.cubemap = new MyUnitCubeQuad(this);
         this.vehicle = new MyVehicle(this);
         this.terrain = new MyTerrain(this);
+        this.billboard = new MyBillboard(this);
 
         //Initialize textures
         this.initTextures();
@@ -108,9 +109,11 @@ class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyR")) {
             this.vehicle.reset();
+            this.billboard.resetSupplies();
         }
         if (this.gui.isKeyPressed("KeyL")) {
             this.vehicle.drop();
+            this.billboard.incrementSupplies();
         }
         if (this.gui.isKeyPressed("KeyP")) {
             this.vehicle.toggleAutoPilot();
@@ -145,10 +148,8 @@ class MyScene extends CGFscene {
 
         //This sphere does not have defined texture coordinates
 
-        this.pushMatrix();
-        //this.translate(0, 10, 0);
         this.vehicle.display(this.scaleFactor);
-        this.popMatrix();
+        this.billboard.display(this.scaleFactor);
 
         if (this.displayCylinder) {
             this.earthTexture.apply();
