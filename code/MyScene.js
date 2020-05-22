@@ -152,7 +152,7 @@ class MyScene extends CGFscene {
 
         this.pushMatrix();
         this.translate(12, 6.8, 16);
-        this.billboard.display(this.scaleFactor);
+        this.billboard.display();
         this.popMatrix();
 
         if (this.displayCylinder) {
