@@ -29,7 +29,7 @@ class MyInterface extends CGFinterface {
     };
 
     isKeyPressed(keyCode) {
-       if(this.activeKeys[keyCode] === true)
+       if(this.activeKeys[keyCode] === true && (keyCode == "KeyP" || keyCode == "KeyL"))
         {         
             this.activeKeys[keyCode] = false;
             return true;
