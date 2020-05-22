@@ -69,7 +69,7 @@ class MyVehicle extends CGFobject {
         if (this.time != 0) {
             deltaTime = (t - this.time) / 1000
         }
-        this.timeSum += deltaTime;
+        this.timeSum += deltaTime * Math.pow(2,this.speed*10);
         if (this.automatic) {
             this.autoPilot(deltaTime);
         } else {
@@ -130,7 +130,7 @@ class MyVehicle extends CGFobject {
 
         this.scene.setActiveShader(this.flagShader);
         this.flagTexture.bind(0);
-        this.flagShader.setUniformsValues({timeFactor: this.timeSum, speed: Math.pow(2, 10 * this.speed)});
+        this.flagShader.setUniformsValues({timeFactor: this.timeSum});
 
         this.scene.pushMatrix();
         this.scene.scale(1.2 * scale, 0.35 * scale, 1.2 * scale);
