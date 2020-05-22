@@ -48,7 +48,6 @@ class MySupply extends CGFobject {
 
     drop(x, y, z) {
         this.state = SupplyStates.FALLING;
-        this.velocity = 0;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -56,17 +55,16 @@ class MySupply extends CGFobject {
 
     reset() {
         this.state = SupplyStates.INACTIVE;
-        this.velocity = 0;
     }
 
     land() {
         this.state = SupplyStates.LANDED;
     }
 
-    update() {
+    update(deltaTime) {
         if (this.state === SupplyStates.FALLING) {
-            this.velocity += 0.01;
-            this.y -= this.velocity;
+            let speed = (10 - this.bottomPosition)/3;
+            this.y -= speed*deltaTime;
             if (this.y <= this.bottomPosition)
                 this.land();
         }

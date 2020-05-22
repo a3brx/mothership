@@ -19,7 +19,7 @@ class MyVehicle extends CGFobject {
             this.supplies.push(new MySupply(scene));
         this.Rudders = [new MyPentagon(scene), new MyPentagon(scene), new MyPentagon(scene), new MyPentagon(scene)];
         this.propeller = new MyPropeller(scene, 6);
-
+        this.time = 0;
         this.reset();
     }
 
@@ -58,9 +58,9 @@ class MyVehicle extends CGFobject {
     }
 
     update(factor, turn = 0, t) {
+        let deltaTime = (t - this.time) / 1000;
         if (this.automatic) {
-            this.autoPilot((t - this.time) / 1000);
-            this.time = t;
+            this.autoPilot(deltaTime);
         } else {
             this.z += Math.cos(this.rotation) * this.speed * factor;
             this.x += Math.sin(this.rotation) * this.speed * factor;
@@ -68,15 +68,15 @@ class MyVehicle extends CGFobject {
             this.turning = turn;
         }
         for (let i = 0; i < supplyNumber; i++)
-            this.supplies[i].update();
+            this.supplies[i].update(deltaTime);
+        this.time = t;
     }
 
-    toggleAutoPilot(t) {
+    toggleAutoPilot() {
         this.automatic = !this.automatic;
         if (this.automatic) {
             this.rotationPoint = [this.x + 5 * Math.cos(this.rotation), this.z - 5 * Math.sin(this.rotation)];
             this.turning = -1;
-            this.time = t;
         } else {
             this.turning = 0;
         }
