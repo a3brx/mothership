@@ -9,13 +9,14 @@ uniform mat4 uNMatrix;
 uniform float speed;
 
 varying vec2 vTextureCoord;
-
+varying vec3 vVertexPosition;
 
 void main() {
 	vTextureCoord = aTextureCoord;
+	vVertexPosition = aVertexPosition;
 
-	vec3 offset =  0.1 * sin(speed) * vec3(0, 0, 1);
+	vec3 offset =  0.1 * (vVertexPosition[0] + 0.5) * sin(speed * (vVertexPosition[0] + 0.5)) * vec3(0, 0, 1);
 
-	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition+offset + offset, 1.0);
+	gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition + offset, 1.0);
 }
 
