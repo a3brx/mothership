@@ -13,7 +13,7 @@ class MyVehicle extends CGFobject {
         this.balloon = new MySphere(scene, 12, 6);
         this.board = new MyCylinder(scene, 6);
         this.texture = this.initTexture("zeppelin");
-        
+
         this.flagShader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
         this.flagTexture = new CGFtexture(this.scene, "images/flag.jpg");
         this.flagShader.setUniformsValues({timeFactor: 0});
@@ -24,7 +24,7 @@ class MyVehicle extends CGFobject {
             this.supplies.push(new MySupply(scene));
         this.Rudders = [new MyPentagon(scene), new MyPentagon(scene), new MyPentagon(scene), new MyPentagon(scene)];
         this.propeller = new MyPropeller(scene, 6);
-        this. flag = new MyPlane(scene,20);
+        this.flag = new MyPlane(scene, 20);
         this.time = 0;
         this.timeSum = 0;
         this.reset();
@@ -66,12 +66,10 @@ class MyVehicle extends CGFobject {
 
     update(factor, turn = 0, t) {
         let deltaTime = 0;
-        if(this.time != 0)
-        {
+        if (this.time != 0) {
             deltaTime = (t - this.time) / 1000
         }
         this.timeSum += deltaTime;
-        console.log(deltaTime*(this.speed*this.speed+0.1));
         if (this.automatic) {
             this.autoPilot(deltaTime);
         } else {
@@ -132,15 +130,15 @@ class MyVehicle extends CGFobject {
 
         this.scene.setActiveShader(this.flagShader);
         this.flagTexture.bind(0);
-        this.flagShader.setUniformsValues({timeFactor: this.timeSum, speed: this.speed+1});
-        
+        this.flagShader.setUniformsValues({timeFactor: this.timeSum, speed: Math.pow(2, 10 * this.speed)});
+
         this.scene.pushMatrix();
-        this.scene.scale(1.2*scale, 0.35*scale, 1.2*scale);
-        this.scene.translate(0,0,-1.8);  
-        this.scene.rotate(Math.PI/2, 0, 1, 0);
+        this.scene.scale(1.2 * scale, 0.35 * scale, 1.2 * scale);
+        this.scene.translate(0, 0, -1.8);
+        this.scene.rotate(Math.PI / 2, 0, 1, 0);
         this.flag.display();
         this.scene.popMatrix();
-        
+
         this.scene.setActiveShader(this.scene.defaultShader);
 
         this.scene.pushMatrix();
