@@ -38,9 +38,9 @@ class MyBillboard extends CGFobject {
         this.nSuppliesDelivered++;
     }
 
-    display(scale) {
+    display() {
         this.scene.pushMatrix();
-        this.scene.scale(2 * scale, scale, scale);
+        this.scene.scale(2, 1, 1);
         this.text.apply();
         this.board.display();
         this.scene.rotate(Math.PI, 0, 1, 0);
@@ -52,7 +52,7 @@ class MyBillboard extends CGFobject {
         for (let j = -1; j < 2; j += 2) {
             for (let i = -1; i < 2; i += 2) {
                 this.scene.pushMatrix();
-                this.scene.scale(0.05 * scale, scale, 0.05 * scale);
+                this.scene.scale(0.05, 1, 0.05);
                 this.scene.translate(15 * i, -1, 0);
                 this.scene.scale(1, j, 1);
                 this.support.display();
@@ -64,7 +64,7 @@ class MyBillboard extends CGFobject {
         this.progressShader.setUniformsValues({nSuppliesDelivered: this.nSuppliesDelivered});
         this.scene.setActiveShader(this.progressShader);
         this.scene.pushMatrix();
-        this.scene.scale(1.5 * scale, 0.2 * scale, scale);
+        this.scene.scale(1.5, 0.2, 1);
         this.scene.translate(0, -1, -0.001);
         this.board.display();
         this.scene.popMatrix();

@@ -26,7 +26,7 @@ class MyVehicle extends CGFobject {
         this.propeller = new MyPropeller(scene, 6);
         this. flag = new MyPlane(scene,20);
         this.time = 0;
-        this.flagSpeed = 0;
+        this.timeSum = 0;
         this.reset();
     }
 
@@ -70,7 +70,7 @@ class MyVehicle extends CGFobject {
         {
             deltaTime = (t - this.time) / 1000
         }
-        this.flagSpeed += (deltaTime*(this.speed*this.speed+0.2))*10;
+        this.timeSum += deltaTime;
         console.log(deltaTime*(this.speed*this.speed+0.1));
         if (this.automatic) {
             this.autoPilot(deltaTime);
@@ -130,10 +130,9 @@ class MyVehicle extends CGFobject {
         this.scene.rotate(this.rotation, 0, 1, 0);
 
 
-        this.flagShader.setUniformsValues({timeFactor: this.flagSpeed});
         this.scene.setActiveShader(this.flagShader);
         this.flagTexture.bind(0);
-        this.flagShader.setUniformsValues({speed: this.flagSpeed});
+        this.flagShader.setUniformsValues({timeFactor: this.timeSum, speed: this.speed+1});
         
         this.scene.pushMatrix();
         this.scene.scale(1.2*scale, 0.35*scale, 1.2*scale);
