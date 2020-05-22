@@ -40,9 +40,6 @@ class MyBillboard extends CGFobject {
 
     display(scale) {
         this.scene.pushMatrix();
-        this.scene.translate(0, 5 + 1.5, 5);
-
-        this.scene.pushMatrix();
         this.scene.scale(2 * scale, scale, scale);
         this.text.apply();
         this.board.display();
@@ -70,9 +67,6 @@ class MyBillboard extends CGFobject {
         this.scene.scale(1.5 * scale, 0.2 * scale, scale);
         this.scene.translate(0, -1, -0.001);
         this.board.display();
-        this.scene.popMatrix();
-
-
         this.scene.popMatrix();
     }
 }

@@ -58,7 +58,7 @@ class MyScene extends CGFscene {
     }
 
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(-20, 20, -20), vec3.fromValues(0, 10, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(-5, 30, -40), vec3.fromValues(0, 10, 0));
     }
 
     initTextures() {
@@ -149,7 +149,11 @@ class MyScene extends CGFscene {
         //This sphere does not have defined texture coordinates
 
         this.vehicle.display(this.scaleFactor);
+
+        this.pushMatrix();
+        this.translate(12, 6.8, 16);
         this.billboard.display(this.scaleFactor);
+        this.popMatrix();
 
         if (this.displayCylinder) {
             this.earthTexture.apply();
