@@ -20,4 +20,3 @@ function initColor(scene, r, g, b) {
     aux.setShininess(1.0);
     return aux;
 }
-

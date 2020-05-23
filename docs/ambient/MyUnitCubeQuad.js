@@ -8,38 +8,24 @@ class MyUnitCubeQuad extends CGFobject {
     constructor(scene) {
         super(scene);
         this.face = new MyQuad(scene);
-        this.idTexture = 0;
+        this.texture = 0;
         this.initMaterials();
     }
 
-    setNightMode(value) {
-        if (value === this.idTexture)
+    setTexture(value) {
+        if (value === this.texture)
             return;
-        this.idTexture = value;
+        this.texture = value;
         this.initMaterials();
-    }
-
-    initTexture(image, wrap1 = 'REPEAT', wrap2 = wrap1) {
-        let texture = new CGFappearance(this.scene);
-        texture.setAmbient(10.0, 10.0, 10.0, 1);
-        texture.setDiffuse(0.0, 0.0, 0.0, 1);
-        texture.setSpecular(0.0, 0.0, 0.0, 1);
-        texture.setShininess(1.0);
-        if (this.idTexture == 0)
-            texture.loadTexture('../images/split_cubemap/' + image + '.png');
-        else
-            texture.loadTexture('../images/split_cubemap/night-' + image + '.png');
-        texture.setTextureWrap(wrap1, wrap2);
-        return texture;
     }
 
     initMaterials() {
-        this.texRight = this.initTexture("right");
-        this.texLeft = this.initTexture("left");
-        this.texFront = this.initTexture("front");
-        this.texBack = this.initTexture("back");
-        this.texTop = this.initTexture("top");
-        this.texBottom = this.initTexture("bottom");
+        this.texRight = initTexture(this.scene, "cubemap/" + this.texture + "/right.png");
+        this.texLeft = initTexture(this.scene, "cubemap/" + this.texture + "/left.png");
+        this.texFront = initTexture(this.scene, "cubemap/" + this.texture + "/front.png");
+        this.texBack = initTexture(this.scene, "cubemap/" + this.texture + "/back.png");
+        this.texTop = initTexture(this.scene, "cubemap/" + this.texture + "/top.png");
+        this.texBottom = initTexture(this.scene, "cubemap/" + this.texture + "/bottom.png");
     }
 
     displayShape(shape, color) {

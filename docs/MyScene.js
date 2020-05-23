@@ -19,9 +19,8 @@ class MyScene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 10, 0);
-        this.cubemap = new MyUnitCubeQuad(this);
+        this.ambient = new MyAmbient(this);
         this.vehicle = new MyVehicle(this);
-        this.terrain = new MyTerrain(this);
         this.billboard = new MyBillboard(this);
 
         //Initialize textures
@@ -73,7 +72,7 @@ class MyScene extends CGFscene {
     }
 
     updateMapTexture() {
-        this.cubemap.setNightMode(this.selectedMapTexture);
+        this.ambient.cubemap.setTexture(this.selectedMapTexture);
     }
 
     checkKeys(t) {
@@ -151,17 +150,7 @@ class MyScene extends CGFscene {
         if (this.displayNormals)
             this.cylinder.enableNormalViz();
 
-        let terrainScale = 50;
-        if (this.displayTerrain) {
-            this.pushMatrix();
-            this.rotate(Math.PI / 2, 1, 0, 0);
-            this.rotate(Math.PI, 0, 1, 0);
-            this.scale(terrainScale, terrainScale, 1);
-            this.terrain.display();
-            this.popMatrix();
-        }
-        this.scale(terrainScale, terrainScale, terrainScale);
-        this.cubemap.display();
+        this.ambient.display();
         // ---- END Primitive drawing section
     }
 }
