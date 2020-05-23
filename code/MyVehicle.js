@@ -14,7 +14,7 @@ class MyVehicle extends CGFobject {
         this.board = new MyCylinder(scene, 6);
         this.texture = this.initTexture("zeppelin");
 
-        this.flagShader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
+        this.flagShader = new CGFshader(this.scene.gl, "../shaders/flag.vert", "../shaders/flag.frag");
         this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
         this.flagShader.setUniformsValues({timeFactor: 0});
 

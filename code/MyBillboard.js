@@ -15,7 +15,7 @@ class MyBillboard extends CGFobject {
 
         this.texture = this.initTexture("billboard");
 
-        this.progressShader = new CGFshader(this.scene.gl, "shaders/billboard.vert", "shaders/billboard.frag");
+        this.progressShader = new CGFshader(this.scene.gl, "../shaders/billboard.vert", "../shaders/billboard.frag");
         this.progressShader.setUniformsValues({uSampler2: 1});
     }
 
