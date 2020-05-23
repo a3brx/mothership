@@ -32,7 +32,6 @@ class MyUnitCubeQuad extends CGFobject {
         //this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
         color.apply();
         shape.display();
-        this.scene.popMatrix();
     }
 
     display() {
@@ -40,30 +39,36 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.translate(0, 0.5, 0);
         this.scene.rotate(-Math.PI / 2, 1, 0, 0);
         this.displayShape(this.face, this.texTop);
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, -0.5, 0);
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
         this.displayShape(this.face, this.texBottom);
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0.5, 0, 0);
         this.scene.rotate(Math.PI / 2, 0, 1, 0);
         this.displayShape(this.face, this.texRight);
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(-0.5, 0, 0);
         this.scene.rotate(-Math.PI / 2, 0, 1, 0);
         this.displayShape(this.face, this.texLeft);
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, 0.5);
         this.displayShape(this.face, this.texFront);
+        this.scene.popMatrix();
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.5);
         this.scene.rotate(Math.PI, 0, 1, 0);
         this.displayShape(this.face, this.texBack);
+        this.scene.popMatrix();
     }
 
 

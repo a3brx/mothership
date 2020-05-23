@@ -8,7 +8,6 @@ class MyTerrain extends CGFobject {
     }
 
     display() {
-        //this.scene.terrainTexture.apply();
         this.terrainShader.setUniformsValues({normScale: this.scaleFactor});
         this.scene.setActiveShader(this.terrainShader);
         this.color.bind(0);
