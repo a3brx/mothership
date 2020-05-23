@@ -6,18 +6,10 @@ class MyBillboard extends CGFobject {
         this.support = new MyQuad(scene);
         this.board = new MyQuad(scene);
 
+        this.black = initColor(this.scene, 50, 50, 50);
         this.text = initTexture(this.scene, "billboard-text.jpg");
-
-        this.black = new CGFappearance(this.scene);
-        this.black.setAmbient(5 * 0.2, 5 * 0.2, 5 * 0.2, 1.0);
-        this.black.setDiffuse(0.0, 0.0, 0.0, 1);
-        this.black.setSpecular(0.0, 0.0, 0.0, 1);
-        this.black.setShininess(1.0);
-
         this.texture = initTexture(this.scene, "billboard.jpg");
-
-        this.progressShader = new CGFshader(this.scene.gl, "../shaders/billboard.vert", "../shaders/billboard.frag");
-        this.progressShader.setUniformsValues({uSampler2: 1});
+        this.progressShader = initShader(this.scene.gl, "billboard", {uSampler2: 1});
     }
 
     resetSupplies() {

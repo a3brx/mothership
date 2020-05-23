@@ -20,3 +20,9 @@ function initColor(scene, r, g, b) {
     aux.setShininess(1.0);
     return aux;
 }
+
+function initShader(gl, name, values) {
+    let aux = new CGFshader(gl, "../shaders/" + name + ".vert", "../shaders/" + name + ".frag");
+    aux.setUniformsValues(values);
+    return aux;
+}

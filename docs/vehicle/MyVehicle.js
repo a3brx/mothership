@@ -12,13 +12,12 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.balloon = new MySphere(scene, 12, 6);
         this.board = new MyCylinder(scene, 6);
-        this.texture = initTexture(this.scene, "zeppelin.png");
-
-        this.flagShader = new CGFshader(this.scene.gl, "../shaders/flag.vert", "../shaders/flag.frag");
-        this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
-        this.flagShader.setUniformsValues({timeFactor: 0});
 
         this.black = initColor(this.scene, 33, 17, 19);
+        this.texture = initTexture(this.scene, "zeppelin.png");
+        this.flagShader = initShader(this.scene.gl, "flag", {timeFactor: 0});
+
+        this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
         this.supplies = [];
         for (let i = 0; i < supplyNumber; i++)
             this.supplies.push(new MySupply(scene));
