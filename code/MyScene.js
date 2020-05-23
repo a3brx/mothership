@@ -67,7 +67,7 @@ class MyScene extends CGFscene {
         this.earthTexture.setDiffuse(0.9, 0.9, 0.9, 1);
         this.earthTexture.setSpecular(0.1, 0.1, 0.1, 1);
         this.earthTexture.setShininess(10.0);
-        this.earthTexture.loadTexture('images/earth.jpg');
+        this.earthTexture.loadTexture('../images/earth.jpg');
         this.earthTexture.setTextureWrap('REPEAT', 'REPEAT');
 
         this.terrainTexture = new CGFappearance(this);
@@ -75,7 +75,7 @@ class MyScene extends CGFscene {
         this.terrainTexture.setDiffuse(0.9, 0.9, 0.9, 1);
         this.terrainTexture.setSpecular(0.1, 0.1, 0.1, 1);
         this.terrainTexture.setShininess(10.0);
-        this.terrainTexture.loadTexture('images/terrain.jpg');
+        this.terrainTexture.loadTexture('../images/terrain.jpg');
         this.terrainTexture.setTextureWrap('REPEAT', 'REPEAT');
     }
 

@@ -15,7 +15,7 @@ class MyVehicle extends CGFobject {
         this.texture = this.initTexture("zeppelin");
 
         this.flagShader = new CGFshader(this.scene.gl, "shaders/flag.vert", "shaders/flag.frag");
-        this.flagTexture = new CGFtexture(this.scene, "images/flag.jpg");
+        this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
         this.flagShader.setUniformsValues({timeFactor: 0});
 
         this.black = this.initColor(33, 17, 19);
@@ -47,7 +47,7 @@ class MyVehicle extends CGFobject {
         texture.setDiffuse(0.0, 0.0, 0.0, 1);
         texture.setSpecular(0.0, 0.0, 0.0, 1);
         texture.setShininess(1.0);
-        texture.loadTexture('images/' + image + '.png');
+        texture.loadTexture('../images/' + image + '.png');
         texture.setTextureWrap(wrap1, wrap2);
         return texture;
     }

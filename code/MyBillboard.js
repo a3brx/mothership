@@ -25,7 +25,7 @@ class MyBillboard extends CGFobject {
         texture.setDiffuse(0.0, 0.0, 0.0, 1);
         texture.setSpecular(0.0, 0.0, 0.0, 1);
         texture.setShininess(1.0);
-        texture.loadTexture('images/' + image + '.jpg');
+        texture.loadTexture('../images/' + image + '.jpg');
         texture.setTextureWrap(wrap1, wrap2);
         return texture;
     }

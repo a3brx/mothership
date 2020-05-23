@@ -27,7 +27,7 @@ class MySupply extends CGFobject {
         this.texture.setDiffuse(0.0, 0.0, 0.0, 1);
         this.texture.setSpecular(0.0, 0.0, 0.0, 1);
         this.texture.setShininess(1.0);
-        this.texture.loadTexture('images/box.jpg');
+        this.texture.loadTexture('../images/box.jpg');
         this.texture.setTextureWrap('REPEAT', 'REPEAT');
 
         this.diamondTexture = new CGFappearance(this.scene);
@@ -35,7 +35,7 @@ class MySupply extends CGFobject {
         this.diamondTexture.setDiffuse(0.0, 0.0, 0.0, 1);
         this.diamondTexture.setSpecular(10.0, 10.0, 10.0, 1);
         this.diamondTexture.setShininess(2.0);
-        this.diamondTexture.loadTexture('images/diamond.jpg');
+        this.diamondTexture.loadTexture('../images/diamond.jpg');
         this.diamondTexture.setTextureWrap('REPEAT', 'REPEAT');
     }
 
