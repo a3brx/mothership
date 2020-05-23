@@ -5,7 +5,7 @@ class MyBillboard extends CGFobject {
         this.support = new MyQuad(scene);
         this.board = new MyQuad(scene);
 
-        this.text = this.initTexture("billboard-text");
+        this.text = initTexture(this.scene, "billboard-text.jpg");
 
         this.black = new CGFappearance(this.scene);
         this.black.setAmbient(5 * 0.2, 5 * 0.2, 5 * 0.2, 1.0);
@@ -13,21 +13,10 @@ class MyBillboard extends CGFobject {
         this.black.setSpecular(0.0, 0.0, 0.0, 1);
         this.black.setShininess(1.0);
 
-        this.texture = this.initTexture("billboard");
+        this.texture = initTexture(this.scene, "billboard.jpg");
 
         this.progressShader = new CGFshader(this.scene.gl, "../shaders/billboard.vert", "../shaders/billboard.frag");
         this.progressShader.setUniformsValues({uSampler2: 1});
-    }
-
-    initTexture(image, wrap1 = 'REPEAT', wrap2 = wrap1) {
-        let texture = new CGFappearance(this.scene);
-        texture.setAmbient(10.0, 10.0, 10.0, 1);
-        texture.setDiffuse(0.0, 0.0, 0.0, 1);
-        texture.setSpecular(0.0, 0.0, 0.0, 1);
-        texture.setShininess(1.0);
-        texture.loadTexture('../images/' + image + '.jpg');
-        texture.setTextureWrap(wrap1, wrap2);
-        return texture;
     }
 
     resetSupplies() {

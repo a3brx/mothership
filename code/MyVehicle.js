@@ -12,7 +12,7 @@ class MyVehicle extends CGFobject {
         super(scene);
         this.balloon = new MySphere(scene, 12, 6);
         this.board = new MyCylinder(scene, 6);
-        this.texture = this.initTexture("zeppelin");
+        this.texture = initTexture(this.scene, "zeppelin.png");
 
         this.flagShader = new CGFshader(this.scene.gl, "../shaders/flag.vert", "../shaders/flag.frag");
         this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
@@ -39,17 +39,6 @@ class MyVehicle extends CGFobject {
         this.rotation = 0;
         this.speed = 0;
         this.automatic = false;
-    }
-
-    initTexture(image, wrap1 = 'REPEAT', wrap2 = wrap1) {
-        let texture = new CGFappearance(this.scene);
-        texture.setAmbient(10.0, 10.0, 10.0, 1);
-        texture.setDiffuse(0.0, 0.0, 0.0, 1);
-        texture.setSpecular(0.0, 0.0, 0.0, 1);
-        texture.setShininess(1.0);
-        texture.loadTexture('../images/' + image + '.png');
-        texture.setTextureWrap(wrap1, wrap2);
-        return texture;
     }
 
     initColor(r, g, b) {
