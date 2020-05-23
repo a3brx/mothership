@@ -8,14 +8,14 @@ class MyUnitCubeQuad extends CGFobject {
     constructor(scene) {
         super(scene);
         this.face = new MyQuad(scene);
-        this.nightMode = false;
+        this.idTexture = 0;
         this.initMaterials();
     }
 
     setNightMode(value) {
-        if (value === this.nightMode)
+        if (value === this.idTexture)
             return;
-        this.nightMode = value;
+        this.idTexture = value;
         this.initMaterials();
     }
 
@@ -25,10 +25,10 @@ class MyUnitCubeQuad extends CGFobject {
         texture.setDiffuse(0.0, 0.0, 0.0, 1);
         texture.setSpecular(0.0, 0.0, 0.0, 1);
         texture.setShininess(1.0);
-        if (this.nightMode)
-            texture.loadTexture('../images/split_cubemap/night-' + image + '.png');
-        else
+        if (this.idTexture == 0)
             texture.loadTexture('../images/split_cubemap/' + image + '.png');
+        else
+            texture.loadTexture('../images/split_cubemap/night-' + image + '.png');
         texture.setTextureWrap(wrap1, wrap2);
         return texture;
     }

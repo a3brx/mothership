@@ -15,8 +15,8 @@ class MyPyramid extends CGFobject {
         this.indices = [];
         this.normals = [];
 
-        var ang = 0;
-        var alphaAng = 2 * Math.PI / this.slices;
+        let ang = 0;
+        let alphaAng = 2 * Math.PI / this.slices;
 
 
         for (let i = 0; i < this.slices; i++) {
@@ -24,24 +24,24 @@ class MyPyramid extends CGFobject {
             // even if they are shared with others, as the normals 
             // in each face will be different
 
-            var sa = Math.sin(ang);
-            var saa = Math.sin(ang + alphaAng);
-            var ca = Math.cos(ang);
-            var caa = Math.cos(ang + alphaAng);
+            let sa = Math.sin(ang);
+            let saa = Math.sin(ang + alphaAng);
+            let ca = Math.cos(ang);
+            let caa = Math.cos(ang + alphaAng);
 
             this.vertices.push(0, 0.5, 0);
             this.vertices.push(ca, -0.5, -sa);
             this.vertices.push(caa, -0.5, -saa);
 
             // triangle normal computed by cross product of two edges
-            var normal = [
+            let normal = [
                 saa - sa,
                 ca * saa - sa * caa,
                 caa - ca
             ];
 
             // normalization
-            var nsize = Math.sqrt(
+            let nsize = Math.sqrt(
                 normal[0] * normal[0] +
                 normal[1] * normal[1] +
                 normal[2] * normal[2]

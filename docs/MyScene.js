@@ -11,17 +11,8 @@ class MyScene extends CGFscene {
         super.init(application);
         this.initCameras();
         this.initLights();
-
-        //Background color
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-        this.gl.clearDepth(100.0);
-        this.gl.enable(this.gl.DEPTH_TEST);
-        this.gl.enable(this.gl.CULL_FACE);
-        this.gl.depthFunc(this.gl.LEQUAL);
-
+        this.initBackground();
         this.setUpdatePeriod(50);
-
         this.enableTextures(true);
 
         //Initialize scene objects
@@ -50,6 +41,10 @@ class MyScene extends CGFscene {
         this.scaleFactor = 1;
     }
 
+    initCameras() {
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(-5, 30, -40), vec3.fromValues(0, 10, 0));
+    }
+
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
         this.lights[0].setDiffuse(1.0, 1.0, 1.0, 1.0);
@@ -57,26 +52,17 @@ class MyScene extends CGFscene {
         this.lights[0].update();
     }
 
-    initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(-5, 30, -40), vec3.fromValues(0, 10, 0));
+    initBackground() {
+        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearDepth(100.0);
+        this.gl.enable(this.gl.DEPTH_TEST);
+        this.gl.enable(this.gl.CULL_FACE);
+        this.gl.depthFunc(this.gl.LEQUAL);
     }
 
     initTextures() {
-        this.earthTexture = new CGFappearance(this);
-        this.earthTexture.setAmbient(0.1, 0.1, 0.1, 1);
-        this.earthTexture.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.earthTexture.setSpecular(0.1, 0.1, 0.1, 1);
-        this.earthTexture.setShininess(10.0);
-        this.earthTexture.loadTexture('../images/earth.jpg');
-        this.earthTexture.setTextureWrap('REPEAT', 'REPEAT');
-
-        this.terrainTexture = new CGFappearance(this);
-        this.terrainTexture.setAmbient(0.1, 0.1, 0.1, 1);
-        this.terrainTexture.setDiffuse(0.9, 0.9, 0.9, 1);
-        this.terrainTexture.setSpecular(0.1, 0.1, 0.1, 1);
-        this.terrainTexture.setShininess(10.0);
-        this.terrainTexture.loadTexture('../images/terrain.jpg');
-        this.terrainTexture.setTextureWrap('REPEAT', 'REPEAT');
+        this.earthTexture = initTexture(this, "earth.jpg");
+        this.terrainTexture = initTexture(this, "terrain.jpg");
     }
 
     setDefaultAppearance() {
@@ -86,9 +72,8 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    updateMapTexture() {
-        console.log(this.selectedMapTexture);
-        this.cubemap.setNightMode(this.selectedMapTexture == 1);
+    updateMapTexture(id) {
+        this.cubemap.setNightMode(id);
     }
 
     checkKeys(t) {

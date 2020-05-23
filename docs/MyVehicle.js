@@ -18,7 +18,7 @@ class MyVehicle extends CGFobject {
         this.flagTexture = new CGFtexture(this.scene, "../images/flag.jpg");
         this.flagShader.setUniformsValues({timeFactor: 0});
 
-        this.black = this.initColor(33, 17, 19);
+        this.black = initColor(this.scene, 33, 17, 19);
         this.supplies = [];
         for (let i = 0; i < supplyNumber; i++)
             this.supplies.push(new MySupply(scene));
@@ -41,24 +41,12 @@ class MyVehicle extends CGFobject {
         this.automatic = false;
     }
 
-    initColor(r, g, b) {
-        r /= 255;
-        g /= 255;
-        b /= 255;
-        let aux = new CGFappearance(this.scene);
-        aux.setAmbient(5 * r, 5 * g, 5 * b, 1.0);
-        aux.setDiffuse(0.0, 0.0, 0.0, 1);
-        aux.setSpecular(0.0, 0.0, 0.0, 1);
-        aux.setShininess(1.0);
-        return aux;
-    }
-
     update(factor, turn = 0, t) {
         let deltaTime = 0;
         if (this.time != 0) {
             deltaTime = (t - this.time) / 1000
         }
-        this.timeSum += deltaTime * Math.pow(2,this.speed*10);
+        this.timeSum += deltaTime * Math.pow(2, this.speed * 10);
         if (this.automatic) {
             this.autoPilot(deltaTime);
         } else {
