@@ -1,5 +1,5 @@
 class MyBillboard extends CGFobject {
-    constructor(scene, x, y, z) {
+    constructor(scene) {
         super(scene);
 
         this.nSuppliesDelivered = 0;
