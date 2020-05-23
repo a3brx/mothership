@@ -8,3 +8,4 @@ function initTexture(scene, image) {
     texture.setTextureWrap('REPEAT', 'REPEAT');
     return texture;
 }
+
