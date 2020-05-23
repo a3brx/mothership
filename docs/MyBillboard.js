@@ -1,6 +1,7 @@
 class MyBillboard extends CGFobject {
-    constructor(scene) {
+    constructor(scene, x, y, z) {
         super(scene);
+
         this.nSuppliesDelivered = 0;
         this.support = new MyQuad(scene);
         this.board = new MyQuad(scene);
@@ -27,7 +28,10 @@ class MyBillboard extends CGFobject {
         this.nSuppliesDelivered++;
     }
 
-    display() {
+    display(x, y, z) {
+        this.scene.pushMatrix();
+        this.scene.translate(x, y, z);
+
         this.scene.pushMatrix();
         this.scene.scale(2, 1, 1);
         this.text.apply();
@@ -56,6 +60,7 @@ class MyBillboard extends CGFobject {
         this.scene.scale(1.5, 0.2, 1);
         this.scene.translate(0, -1, -0.001);
         this.board.display();
+        this.scene.popMatrix();
         this.scene.popMatrix();
     }
 }

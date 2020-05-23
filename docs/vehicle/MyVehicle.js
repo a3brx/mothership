@@ -8,7 +8,7 @@ const supplyNumber = 5;
 
 class MyVehicle extends CGFobject {
 
-    constructor(scene) {
+    constructor(scene, height) {
         super(scene);
         this.balloon = new MySphere(scene, 12, 6);
         this.board = new MyCylinder(scene, 6);
@@ -27,12 +27,12 @@ class MyVehicle extends CGFobject {
         this.flag = new MyPlane(scene, 20);
         this.time = 0;
         this.timeSum = 0;
+        this.y = height;
         this.reset();
     }
 
     reset() {
         this.x = 0;
-        this.y = 10;
         this.z = 0;
         for (let i = 0; i < supplyNumber; i++)
             this.supplies[i].reset();

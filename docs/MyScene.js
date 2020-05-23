@@ -17,10 +17,10 @@ class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
+        this.sphere = new MySphere(this, 16, 8);
         this.cylinder = new MyCylinder(this, 10, 0);
         this.ambient = new MyAmbient(this);
-        this.vehicle = new MyVehicle(this);
+        this.vehicle = new MyVehicle(this, 10);
         this.billboard = new MyBillboard(this);
 
         //Initialize textures
@@ -28,12 +28,11 @@ class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = false;
+        this.displayNormals = false;
         this.displayCylinder = false;
         this.displaySphere = false;
-        this.displayNormals = false;
-        this.displayTerrain = true;
-        this.nightMode = false;
 
+        this.displayTerrain = true;
         this.selectedMapTexture = 0;
         this.textureIds = {'Day': 0, 'Night': 1};
         this.speedFactor = 1;
@@ -61,7 +60,6 @@ class MyScene extends CGFscene {
 
     initTextures() {
         this.earthTexture = initTexture(this, "earth.jpg");
-        this.terrainTexture = initTexture(this, "terrain.jpg");
     }
 
     setDefaultAppearance() {
@@ -131,26 +129,24 @@ class MyScene extends CGFscene {
         // ---- BEGIN Primitive drawing section
 
         //This sphere does not have defined texture coordinates
-
-        this.vehicle.display(this.scaleFactor);
-
-        this.pushMatrix();
-        this.translate(12, 6.8, 16);
-        this.billboard.display();
-        this.popMatrix();
-
+        if (this.displayNormals) {
+            this.cylinder.enableNormalViz();
+            this.sphere.enableNormalViz();
+        }
         if (this.displayCylinder) {
             this.earthTexture.apply();
             this.cylinder.display();
         }
         if (this.displaySphere) {
             this.earthTexture.apply();
-            this.incompleteSphere.display();
+            this.sphere.display();
         }
-        if (this.displayNormals)
-            this.cylinder.enableNormalViz();
 
-        this.ambient.display();
+        this.vehicle.display(this.scaleFactor);
+        this.billboard.display(12, 6.8, 16);
+        if (this.displayTerrain)
+            this.ambient.display();
+
         // ---- END Primitive drawing section
     }
 }
