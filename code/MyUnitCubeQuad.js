@@ -7,12 +7,7 @@ class MyUnitCubeQuad extends CGFobject {
 
     constructor(scene) {
         super(scene);
-        this.quadCima = new MyQuad(scene);
-        this.quadBaixo = new MyQuad(scene);
-        this.quadFrente = new MyQuad(scene);
-        this.quadTras = new MyQuad(scene);
-        this.quadDireita = new MyQuad(scene);
-        this.quadEsquerda = new MyQuad(scene);
+        this.face = new MyQuad(scene);
         this.nightMode = false;
         this.initMaterials();
     }
@@ -58,31 +53,31 @@ class MyUnitCubeQuad extends CGFobject {
         this.scene.pushMatrix();
         this.scene.translate(0, 0.5, 0);
         this.scene.rotate(-Math.PI / 2, 1, 0, 0);
-        this.displayShape(this.quadCima, this.texTop);
+        this.displayShape(this.face, this.texTop);
 
         this.scene.pushMatrix();
         this.scene.translate(0, -0.5, 0);
         this.scene.rotate(Math.PI / 2, 1, 0, 0);
-        this.displayShape(this.quadBaixo, this.texBottom);
+        this.displayShape(this.face, this.texBottom);
 
         this.scene.pushMatrix();
         this.scene.translate(0.5, 0, 0);
         this.scene.rotate(Math.PI / 2, 0, 1, 0);
-        this.displayShape(this.quadDireita, this.texRight);
+        this.displayShape(this.face, this.texRight);
 
         this.scene.pushMatrix();
         this.scene.translate(-0.5, 0, 0);
         this.scene.rotate(-Math.PI / 2, 0, 1, 0);
-        this.displayShape(this.quadEsquerda, this.texLeft);
+        this.displayShape(this.face, this.texLeft);
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, 0.5);
-        this.displayShape(this.quadFrente, this.texFront);
+        this.displayShape(this.face, this.texFront);
 
         this.scene.pushMatrix();
         this.scene.translate(0, 0, -0.5);
         this.scene.rotate(Math.PI, 0, 1, 0);
-        this.displayShape(this.quadTras, this.texBack);
+        this.displayShape(this.face, this.texBack);
     }
 
 
