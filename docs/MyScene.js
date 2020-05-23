@@ -72,8 +72,8 @@ class MyScene extends CGFscene {
         this.setShininess(10.0);
     }
 
-    updateMapTexture(id) {
-        this.cubemap.setNightMode(id);
+    updateMapTexture() {
+        this.cubemap.setNightMode(this.selectedMapTexture);
     }
 
     checkKeys(t) {
